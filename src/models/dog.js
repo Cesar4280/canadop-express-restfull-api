@@ -21,7 +21,7 @@ const dog = {
 
     async getAdopterToken(code) {
         const token = await pool.query(queries.getAdopterToken, code);
-        return token.length > 0 ? token[0][0] : null;
+        return token[0].length > 0 ? token[0][0] : null;
     },
 
     async addOne(dog) {
