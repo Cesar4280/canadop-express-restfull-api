@@ -19,7 +19,7 @@ queries.updateDog = {
 queries.getAdoptionDogs = `${queries.getDogs} ${filter} AND PRR_DESPARASITADO=1`;
 queries.getAvailableDogs = `${queries.getFullDogs} ${filter}`;
 
-queries.addDog = "CALL sp_asignar_codigo(?,?,?,?,?,?,?,?,?,?,?,?)";
+queries.addDog = "CALL sp_assign_code(?,?,?,?,?,?,?,?,?,?,?,?)";
 queries.getAdopterToken = "CALL sp_get_owner_with_dog_code(?)";
 
 /*****************************USUARIO*******************************/
