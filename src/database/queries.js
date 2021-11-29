@@ -20,8 +20,8 @@ queries.getAdoptionDogs = `${queries.getDogs} ${filter} AND PRR_DESPARASITADO=1`
 queries.getAvailableDogs = `${queries.getFullDogs} ${filter}`;
 
 queries.addDog = "CALL sp_assign_code(?,?,?,?,?,?,?,?,?,?,?,?)";
-queries.getAdopterToken = "CALL sp_get_owner_with_dog_code(?)";
 queries.getDogByUser = "CALL sp_get_dog_with_user(?)";
+queries.getAdopterToken = "CALL sp_get_owner_with_dog_code(?)";
 
 /*****************************USUARIO*******************************/
 
@@ -43,6 +43,7 @@ queries.addUser = "INSERT INTO usuario SET ?";
 
 queries.authUser = `${queries.getUsers} WHERE USUARIO_NOMBRE=? AND USUARIO_CONTRASENA=? LIMIT 1`;
 
+queries.addAdopter = "CALL sp_add_adopter(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
 /*****************************ROL_USUARIO*******************************/
 

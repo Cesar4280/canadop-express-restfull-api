@@ -76,6 +76,17 @@ exports.addUser = async (req, res) => {
     }
 };
 
+exports.addAdopter = async (req, res) => {
+    try {
+        const valid = userModel.checkColumnsToInsert(req.body);
+        if (!valid) return response.badRequest(res, "Faltan ciertas propiedades");
+        await userModel.addAdopter(req.body);
+        response.created(res, "Adoptante agregado al sistema");
+    } catch (error) {
+        response.internalError(res);
+    }
+};
+
 exports.updateUser = async (req, res) => {
     try {
         const record = await userModel.updateOne("id", req.params.nin, req.body);

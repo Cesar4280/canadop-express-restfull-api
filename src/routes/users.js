@@ -8,6 +8,7 @@ routes.get("/:id/admin", controller.getAdmin);
 // routes.get("/:id/adopter", controller.getAdopter);
 
 routes.post("/", controller.addUser); // agregar un usuario
+routes.post("/adopters", controller.addAdopter); // agregar un usuario
 routes.post("/auth/login", controller.authUser); // autenticar ingreso de usuario
 // routes.post("/auth/register", controller.authUser); // autenticar registro de usuario
 
