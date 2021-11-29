@@ -63,9 +63,9 @@ exports.getDog = async (req, res) => {
     }
 };
 
-exports.getAdopterToken = async(req, res) => {
+exports.getAdopterToken = async (req, res) => {
     try {
-        const token = await dogModel.getAdopterToken(req.params.code);
+        const token = await dogModel.getAdopterToken(req.params.code.slice(0, 10));
         if (token === null) return response.notFound(res, "Token no encontrado");
         response.success(res, "Token del adoptante", token);
     } catch (error) {
