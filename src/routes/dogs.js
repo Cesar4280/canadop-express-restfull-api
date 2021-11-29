@@ -7,6 +7,7 @@ routes.get("/available", controller.getAvailableDogs); // perros disponibles en 
 routes.get("/:code", controller.getDog); // un perro por codigo
 routes.put("/:code", controller.updateDog); // actualizar un perro
 routes.post("/", controller.addDog); // agregar un perro
+routes.get("/user/:user", controller.getDogByUser); // agregar un perro
 routes.get("/:code/adopter/token", controller.getAdopterToken); // agregar un perro
 
 module.exports = routes;

@@ -33,6 +33,11 @@ const dog = {
         return record.affectedRows > 0;
     },
 
+    async getDogByUser(user) {
+        const dog = await pool.query(queries.getDogByUser, user);
+        return dog[0].length > 0 ? dog[0][0] : null;
+    },
+
     checkColumnsToUpdate(data) {
         return utils.checkToUpdate.every(column => data.hasOwnProperty(column));
     },

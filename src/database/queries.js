@@ -21,6 +21,7 @@ queries.getAvailableDogs = `${queries.getFullDogs} ${filter}`;
 
 queries.addDog = "CALL sp_assign_code(?,?,?,?,?,?,?,?,?,?,?,?)";
 queries.getAdopterToken = "CALL sp_get_owner_with_dog_code(?)";
+queries.getDogByUser = "CALL sp_get_dog_with_user(?)";
 
 /*****************************USUARIO*******************************/
 
