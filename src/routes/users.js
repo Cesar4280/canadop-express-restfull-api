@@ -13,7 +13,7 @@ routes.post("/adopters", controller.addAdopter); // agregar un usuario
 routes.post("/auth/login", controller.authUser); // autenticar ingreso de usuario
 // routes.post("/auth/register", controller.authUser); // autenticar registro de usuario
 
-routes.get("/:nin", controller.getUser); // un usuario por cedula
+routes.get("/:user", controller.getUser); // un usuario por cedula
 routes.put("/:nin", controller.updateUser); // actualizar un usuario
 routes.get("/:id/role", controller.getUserRole); // un usuario por cedula
 

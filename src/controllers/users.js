@@ -22,7 +22,7 @@ exports.getUsers = async (req, res) => {
 
 exports.getUser = async (req, res) => {
     try {
-        const user = await userModel.getOne("dni", req.params.nin);
+        const user = await userModel.getOne("username", req.params.user);
         if (user === null) return response.notFound(res, "Usuario no encontrado");
         response.success(res, "Usuario encontrado", user);
     } catch (error) {
@@ -52,9 +52,13 @@ exports.getUserRole = async (req, res) => {
 
 exports.getTokenMessage = async(req, res) => {
     try {
+        const user = await userModel.getOne("username", req.params.user.slice(0, 255));
+        if (user === null) return response.notFound(res, "Usuario no registrado");
+        const role = await userModel.getRole(user.USUARIO_ID);
+        if (role !== "Adoptante") return response.forbidden(res, "Prohibido acceder al recurso");
         const token = await userModel.getTokenMessage(req.params.user.slice(0, 255));
-        if (token === null) return response.notFound(res, "Token no encontrado");
-        response.success(res, "Token del adoptante", token);
+        if (token === null) return response.notFound(res, "No tienes asignado un Token");
+        response.success(res, "Adoptante con Token", token);
     } catch (error) {
         response.internalError(res);
     }
