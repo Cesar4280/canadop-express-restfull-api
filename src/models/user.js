@@ -31,7 +31,8 @@ const user = {
     },
 
     async addAdopter(user) {
-        return await pool.query(queries.addAdopter, utils.dataToInsert(user));
+        const adopter = await utils.dataToInsert(user);
+        return await pool.query(queries.addAdopter, adopter);
     },
 
     async updateOne(key, value, data) {
@@ -75,25 +76,26 @@ const utils = {
         "ADOP_NHIJOS"
     ],
 
-    dataToInsert(user) {
+    async dataToInsert(adopter) {
         const data = [];
-        data.push(user.USUARIO_CC);
-        data.push(user.USUARIO_NOMBRE);
-        data.push(user.USUARIO_CONTRASENA);
-        data.push(user.USUARIO_PNOMBRE);
-        data.push(user.USUARIO_SNOMBRE);
-        data.push(user.USUARIO_PAPELLIDO);
-        data.push(user.USUARIO_SAPELLIDO);
-        data.push(user.USUARIO_EDAD);
-        data.push(user.USUARIO_CORREO);
-        data.push(user.USUARIO_SEXO);
-        data.push(user.USUARIO_CELULAR);
-        data.push(user.USUARIO_DIRECCION);
-        data.push(user.ROL_USUARIO_ID);
-        data.push(user.ADOP_ECIVIL);
-        data.push(user.ADOP_NACAD);
-        data.push(user.ADOP_PROFESION);
-        data.push(user.ADOP_NHIJOS);
+        data.push(adopter.USUARIO_CC);
+        data.push(adopter.USUARIO_NOMBRE);
+        const hash = await user.encryptPassword(adopter.USUARIO_CONTRASENA);
+        data.push(hash);
+        data.push(adopter.USUARIO_PNOMBRE);
+        data.push(adopter.USUARIO_SNOMBRE);
+        data.push(adopter.USUARIO_PAPELLIDO);
+        data.push(adopter.USUARIO_SAPELLIDO);
+        data.push(adopter.USUARIO_EDAD);
+        data.push(adopter.USUARIO_CORREO);
+        data.push(adopter.USUARIO_SEXO);
+        data.push(adopter.USUARIO_CELULAR);
+        data.push(adopter.USUARIO_DIRECCION);
+        data.push(adopter.ROL_USUARIO_ID);
+        data.push(adopter.ADOP_ECIVIL);
+        data.push(adopter.ADOP_NACAD);
+        data.push(adopter.ADOP_PROFESION);
+        data.push(adopter.ADOP_NHIJOS);
         return data;
     }
 
