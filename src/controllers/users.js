@@ -54,11 +54,12 @@ exports.getTokenMessage = async(req, res) => {
     try {
         const user = await userModel.getOne("username", req.params.user.slice(0, 255));
         if (user === null) return response.notFound(res, "Usuario no registrado");
-        const role = await userModel.getRole(user.USUARIO_ID);
-        if (role !== "Adoptante") return response.forbidden(res, "Prohibido acceder al recurso");
-        const token = await userModel.getTokenMessage(req.params.user.slice(0, 255));
-        if (token === null) return response.notFound(res, "No tienes asignado un Token");
-        response.success(res, "Adoptante con Token", token);
+        const { ROL_USUARIO_NOMBRE } = await userModel.getRole(user.USUARIO_ID);
+        if (ROL_USUARIO_NOMBRE !== "Adoptante") return response.forbidden(res, "Prohibido acceder al recurso");
+        const { ADOP_TOKEN } = await userModel.getTokenMessage(req.params.user.slice(0, 255));
+        console.log(ADOP_TOKEN);
+        if (ADOP_TOKEN === null) return response.notFound(res, "Adoptante sin Token");
+        response.success(res, "Adoptante con Token", ADOP_TOKEN);
     } catch (error) {
         response.internalError(res);
     }
