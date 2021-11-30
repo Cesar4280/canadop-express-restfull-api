@@ -17,6 +17,11 @@ const user = {
         return user.length > 0 ? user[0] : null;
     },
 
+    async getTokenMessage(user) {
+        const token = await pool.query(queries.getTokenMessage, user);
+        return token[0].length > 0 ? token[0][0] : null;
+    },
+
     async addOne(user) {
         const record = await this.getOne("username", user.USUARIO_NOMBRE);
         if (record !== null) return false;

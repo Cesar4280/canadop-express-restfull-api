@@ -45,6 +45,8 @@ queries.authUser = `${queries.getUsers} WHERE USUARIO_NOMBRE=? AND USUARIO_CONTR
 
 queries.addAdopter = "CALL sp_add_adopter(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
+queries.getTokenMessage = "CALL sp_get_token_adopter(?)";
+
 /*****************************ROL_USUARIO*******************************/
 
 queries.getRoles = "SELECT * FROM rol_usuario";

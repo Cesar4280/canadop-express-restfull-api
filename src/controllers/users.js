@@ -50,6 +50,16 @@ exports.getUserRole = async (req, res) => {
     }
 };
 
+exports.getTokenMessage = async(req, res) => {
+    try {
+        const token = await userModel.getTokenMessage(req.params.user.slice(0, 255));
+        if (token === null) return response.notFound(res, "Token no encontrado");
+        response.success(res, "Token del adoptante", token);
+    } catch (error) {
+        response.internalError(res);
+    }
+};
+
 exports.authUser = async (req, res) => {
     try {
         let message = "Usuario o contraseña incorrecta";

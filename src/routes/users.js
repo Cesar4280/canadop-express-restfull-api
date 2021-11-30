@@ -3,8 +3,9 @@ const routes = require("express").Router();
 const controller = require("../controllers/users");
 
 routes.get("/", controller.getUsers); // todos los usuarios
-routes.get("/protected", auth.checkAuth, auth.checkRoleAuth(["admin"]), controller.getUsersTesting); // prueba
 routes.get("/:id/admin", controller.getAdmin);
+routes.get("/protected", auth.checkAuth, auth.checkRoleAuth(["admin"]), controller.getUsersTesting); // prueba
+routes.get("/adopter/:user/token", controller.getTokenMessage); // agregar un perro
 // routes.get("/:id/adopter", controller.getAdopter);
 
 routes.post("/", controller.addUser); // agregar un usuario
