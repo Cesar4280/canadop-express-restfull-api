@@ -19,7 +19,8 @@ const user = {
 
     async getTokenMessage(user) {
         const token = await pool.query(queries.getTokenMessage, user);
-        return token[0].length > 0 ? token[0][0] : null;
+        console.log(token);
+        return token.length > 0 ? token[0] : null;
     },
 
     async addOne(user) {
