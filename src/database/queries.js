@@ -45,7 +45,7 @@ queries.authUser = `${queries.getUsers} WHERE USUARIO_NOMBRE=? AND USUARIO_CONTR
 
 queries.addAdopter = "CALL sp_add_adopter(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
-queries.getTokenMessage = "CALL sp_get_token_adopter(?)";
+queries.getTokenMessage = "SELECT A.ADOP_TOKEN FROM adoptante A JOIN usuario U ON A.USUARIO_ID=U.USUARIO_ID WHERE U.USUARIO_NOMBRE=? LIMIT 1";
 
 /*****************************ROL_USUARIO*******************************/
 
